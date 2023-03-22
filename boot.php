@@ -1,5 +1,7 @@
 <?php
 
+use SlothDevGuy\MVCEnhancements\ServiceProvider;
+
 require_once __DIR__ . '/vendor/autoload.php';
 
 (new Laravel\Lumen\Bootstrap\LoadEnvironmentVariables(
@@ -24,7 +26,7 @@ $app = new Laravel\Lumen\Application(
 );
 
 $app->register(Jenssegers\Mongodb\MongodbServiceProvider::class);
-//$app->register(SlothDevGuy\Searches\Http\Requests\RequestsServiceProvider::class);
+$app->register(ServiceProvider::class);
 
 
 $app->withFacades();
