@@ -2,6 +2,8 @@
 
 namespace Tests;
 
+use Psr\Log\LoggerInterface;
+
 /**
  * Class SetupTest
  * @package Tests
@@ -16,5 +18,7 @@ class SetupTest extends TestCase
     public function testApp() : void
     {
         $this->assertNotNull(app());
+
+        $this->assertInstanceOf(LoggerInterface::class, logger('set-up test'));
     }
 }

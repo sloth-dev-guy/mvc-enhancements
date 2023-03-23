@@ -4,13 +4,17 @@ namespace SlothDevGuy\MVCEnhancements\ValueObjects;
 
 use Carbon\Carbon;
 use SlothDevGuy\MVCEnhancements\Interfaces\ValueObject;
+use SlothDevGuy\MVCEnhancements\ValueObjects\Traits\ProxyValueObjectWithObjectMethods;
 
 /**
  * Class CarbonValueObject
  * @package SlothDevGuy\MVCEnhancements\ValueObjects
+ * @mixin Carbon
  */
 class CarbonValueObject implements ValueObject
 {
+    use ProxyValueObjectWithObjectMethods;
+
     /**
      * Carbon value object
      *

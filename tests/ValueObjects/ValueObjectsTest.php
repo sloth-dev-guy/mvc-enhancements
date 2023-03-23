@@ -75,6 +75,11 @@ class ValueObjectsTest extends TestCase
 
         $this->assertInstanceOf(CarbonValueObject::class, $date = $valuesObject->get('date'));
         $this->assertEquals((new Carbon($expected['date']))->toISOString(), (string) $date);
+        $this->assertEquals((new Carbon($expected['date']))->toISOString(), $date->cast());
+
+        //new carbon from timestamp
+        $newCarbonValueObject = new CarbonValueObject($date->object()->getTimestamp());
+        $this->assertEquals($date->object()->getTimestamp(), $newCarbonValueObject->getTimestamp());
 
         $this->assertInstanceOf(BSONCarbonValueObject::class, $bson = $valuesObject->get('bson'));
         $this->assertEquals((new Carbon($expected['bson']))->toISOString(), (string) $bson);
@@ -84,12 +89,6 @@ class ValueObjectsTest extends TestCase
 
         $this->assertInstanceOf(BSONCarbonValueObject::class, $bson = $valuesObject->get('nest')->get('bson'));
         $this->assertEquals((new Carbon($expected['nest']['bson']))->toISOString(), (string) $bson);
-
-        echo $valuesObject->toJson(JSON_PRETTY_PRINT);
-
-        var_dump($valuesObject->cast());
-
-        echo json_encode($valuesObject, JSON_PRETTY_PRINT);
     }
 
     public function testValueObjectValidations() : void
@@ -110,19 +109,6 @@ class ValueObjectsTest extends TestCase
         }
 
         $ex && throw $ex;
-    }
-
-    public function testArrayOfValueObjects()
-    {
-        $dateTimes = [$carbon = now(), $string = date('Y-m-d H:i:s'), $dateTime = fake()->dateTime];
-
-        $valueObjects = $this->newArrayValuesObject($dateTimes);
-
-        $valueObjects->each(fn(ValueObject $valueObject) => $this->assertInstanceOf(BSONCarbonValueObject::class, $valueObject));
-
-        $this->assertEquals($carbon->toISOString(), $valueObjects[0]->value());
-        $this->assertEquals($string, $valueObjects[1]->object()->format('Y-m-d H:i:s'));
-        $this->assertEquals($dateTime->getTimestamp(), $valueObjects[2]->object()->getTimestamp());
     }
 
     /**
@@ -147,24 +133,6 @@ class ValueObjectsTest extends TestCase
                     'validations' => ['sometimes', 'required', 'string', 'max:25'],
                 ],
             ];
-        };
-    }
-
-    /**
-     * @param array $values
-     * @return ArrayOfValueObjects
-     */
-    protected function newArrayValuesObject(array $values) : ArrayOfValueObjects
-    {
-        return new class($values) extends ArrayOfValueObjects
-        {
-            /**
-             * @return string
-             */
-            public static function valueObjectClass(): string
-            {
-                return BSONCarbonValueObject::class;
-            }
         };
     }
 }

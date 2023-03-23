@@ -3,6 +3,7 @@
 use Carbon\Carbon;
 use Faker\Factory;
 use Faker\Generator;
+use Psr\Log\LoggerInterface;
 
 if (! function_exists('fake') && class_exists(Factory::class)) {
     /**
@@ -41,3 +42,22 @@ if (! function_exists('now')) {
         return Carbon::now($tz);
     }
 }
+
+if (! function_exists('logger')) {
+    /**
+     * Log a debug message to the logs.
+     *
+     * @param  string|null  $message
+     * @param  array  $context
+     * @return LoggerInterface
+     */
+    function logger(string $message = null, array $context = []): LoggerInterface
+    {
+        if (!is_null($message)) {
+            logger()->debug($message, $context);
+        }
+
+        return app('Psr\Log\LoggerInterface');
+    }
+}
+

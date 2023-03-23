@@ -161,6 +161,7 @@ class EntityValueObject implements ValuesObjectInterface
     /**
      * @param array|Arrayable $newAttributes
      * @return $this
+     * @throws ValidationException
      */
     public function cloneWith(array|Arrayable $newAttributes = []): static
     {
@@ -209,6 +210,6 @@ class EntityValueObject implements ValuesObjectInterface
      */
     public function jsonSerialize(): mixed
     {
-        return $this->toJson();
+        return $this->value();
     }
 }

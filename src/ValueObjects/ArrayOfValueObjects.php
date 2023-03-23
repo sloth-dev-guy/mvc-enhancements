@@ -197,7 +197,7 @@ abstract class ArrayOfValueObjects implements ArrayOfValueObjectsInterface
 
     /**
      * @inheritDoc
-     * @return mixed
+     * @return mixed|Collection
      * @noinspection PhpMixedReturnTypeCanBeReducedInspection
      */
     public function object(): mixed
@@ -207,7 +207,7 @@ abstract class ArrayOfValueObjects implements ArrayOfValueObjectsInterface
 
     /**
      * @inheritDoc
-     * @return mixed
+     * @return mixed|Collection
      * @noinspection PhpMixedReturnTypeCanBeReducedInspection
      */
     public function value(): mixed
@@ -217,7 +217,7 @@ abstract class ArrayOfValueObjects implements ArrayOfValueObjectsInterface
 
     /**
      * @inheritDoc
-     * @return mixed
+     * @return mixed|array
      * @noinspection PhpMixedReturnTypeCanBeReducedInspection
      */
     public function cast(): mixed

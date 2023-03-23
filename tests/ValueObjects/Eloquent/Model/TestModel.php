@@ -33,6 +33,6 @@ class TestModel extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
         'deleted_at' => 'datetime',
-        'options' => ArrayValueObjectCast::class,
+        'options' => AsTestValueObject::class,
     ];
 }
