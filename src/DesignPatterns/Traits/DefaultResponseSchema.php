@@ -2,7 +2,7 @@
 
 namespace SlothDevGuy\MVCEnhancements\DesignPatterns\Traits;
 
-use SlothDevGuy\MVCEnhancements\Http\SimpleRespose;
+use SlothDevGuy\MVCEnhancements\Http\SimpleResponse;
 use SlothDevGuy\MVCEnhancements\Interfaces\ResponseSchema;
 
 /**
@@ -16,6 +16,6 @@ trait DefaultResponseSchema
      */
     public static function defaultResponseSchema() : ResponseSchema
     {
-        return new SimpleRespose();
+        return new SimpleResponse();
     }
 }

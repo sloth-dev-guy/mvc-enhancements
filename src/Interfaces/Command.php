@@ -18,10 +18,9 @@ interface Command
     /**
      * Executes all this use case steps
      *
-     * @return mixed
-     * @noinspection PhpMissingReturnTypeInspection
+     * @return void
      */
-    public function execute();
+    public function execute(): void;
 
     /**
      * Gets or sets the response schema returned by this action

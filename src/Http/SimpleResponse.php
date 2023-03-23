@@ -9,7 +9,7 @@ use SlothDevGuy\MVCEnhancements\Interfaces\ResponseSchema;
  * Class BaseResponse
  * @package SlothDevGuy\LaravelNice
  */
-class SimpleRespose implements ResponseSchema
+class SimpleResponse implements ResponseSchema
 {
     /**
      * @var Arrayable
