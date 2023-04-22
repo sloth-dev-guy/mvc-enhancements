@@ -212,7 +212,7 @@ abstract class ArrayOfValueObjects implements ArrayOfValueObjectsInterface
      */
     public function value(): mixed
     {
-        return $this->collect()->map(fn(ValueObject $valueObject) => $valueObject->value());
+        return $this->toArray();
     }
 
     /**

@@ -31,6 +31,7 @@ interface ValueObject extends Stringable, JsonSerializable
 
     /**
      * Cast the value object as another value or type, usually the same return as the value method
+     * This call can be used to use another return type for database storage
      *
      * @return mixed
      */
