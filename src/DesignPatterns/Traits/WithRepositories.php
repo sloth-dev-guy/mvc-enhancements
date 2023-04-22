@@ -29,6 +29,16 @@ trait WithRepositories
         return data_get($this->repositories, $name);
     }
 
+
+    /**
+     * @inheritdoc
+     * @return void
+     */
+    protected function onConstruct(): void
+    {
+        $this->setDefaultRepositories();
+    }
+
     /**
      * @return static
      */

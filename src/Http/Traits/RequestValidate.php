@@ -141,6 +141,10 @@ trait RequestValidate
      */
     public function validated(): array
     {
+        if(!isset($this->validator)){
+            $this->validate();
+        }
+
         return $this->validator->validated();
     }
 

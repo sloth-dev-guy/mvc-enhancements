@@ -28,6 +28,16 @@ abstract class Action implements Command
     )
     {
         $this->response($this->defaultResponseSchema());
+
+        $this->onConstruct();
+    }
+
+    /**
+     * @return void
+     */
+    protected function onConstruct(): void
+    {
+
     }
 
     /**
