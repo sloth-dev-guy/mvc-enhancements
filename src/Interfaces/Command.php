@@ -2,6 +2,8 @@
 
 namespace SlothDevGuy\MVCEnhancements\Interfaces;
 
+use Symfony\Component\HttpFoundation\Response;
+
 /**
  * Interface Action
  * @package SlothDevGuy\MVCEnhancements\Interfaces
@@ -25,8 +27,8 @@ interface Command
     /**
      * Gets or sets the response schema returned by this action
      *
-     * @param ResponseSchema|null $responseSchema
-     * @return ResponseSchema
+     * @param ResponseSchema|Response|null $responseSchema
+     * @return ResponseSchema|Response
      */
-    public function response(ResponseSchema $responseSchema = null) : ResponseSchema;
+    public function response(ResponseSchema|Response $responseSchema = null) : ResponseSchema|Response;
 }

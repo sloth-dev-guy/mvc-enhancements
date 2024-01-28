@@ -6,6 +6,7 @@ use SlothDevGuy\MVCEnhancements\DesignPatterns\Traits\DefaultResponseSchema;
 use SlothDevGuy\MVCEnhancements\Interfaces\Command;
 use SlothDevGuy\MVCEnhancements\Interfaces\Request;
 use SlothDevGuy\MVCEnhancements\Interfaces\ResponseSchema;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class BaseAction
@@ -16,9 +17,9 @@ abstract class Action implements Command
     use DefaultResponseSchema;
 
     /**
-     * @var ResponseSchema
+     * @var ResponseSchema|Response
      */
-    protected ResponseSchema $responseSchema;
+    protected ResponseSchema|Response $responseSchema;
 
     /**
      * @param Request $request
@@ -41,10 +42,10 @@ abstract class Action implements Command
 
     /**
      * @inheritdoc
-     * @param ResponseSchema|null $responseSchema
-     * @return ResponseSchema
+     * @param ResponseSchema|Response|null $responseSchema
+     * @return ResponseSchema|Response
      */
-    public function response(ResponseSchema $responseSchema = null): ResponseSchema
+    public function response(ResponseSchema|Response $responseSchema = null): ResponseSchema|Response
     {
         if(!is_null($responseSchema)){
             $this->responseSchema = $responseSchema;
